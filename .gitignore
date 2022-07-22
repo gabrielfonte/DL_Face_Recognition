@@ -1,0 +1,9 @@
+/build
+.vscode/**
+.project
+.cproject
+**.old
+/Application/Client/node_modules/**
+/Application/Client/.angular/**
+/Application/Websocket/node_modules/**
+/Application/Websocket/dataset/**

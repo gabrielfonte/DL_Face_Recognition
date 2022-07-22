@@ -1,0 +1,136 @@
+{
+  "name": "app_face_recognition",
+  "version": "1.0.0",
+  "description": "Reconhecimento Facial",
+  "main": "app.js",
+  "author": {
+    "name": "Gabriel Fonte"
+  },
+  "homepage": "https://github.com/gabrielfonte",
+  "copyright": "Copyright 2022 @ Gabriel",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build-electron": "ng build --base-href ./ && electron .",
+    "run-elec": "electron .",
+    "build": "ng build --configuration production --aot --build-optimizer --common-chunk --vendor-chunk --optimization --progress",
+    "build-installer": "electron-builder",
+    "recompile-sp": "ngcc --properties es2015 browser module main --first-only && electron-rebuild -f -w serialport",
+    "postinstall": "electron-builder install-app-deps && electron-rebuild -f -w serialport",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "build": {
+    "appId": "App Face Recognition",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "dist/assets/Logo.ico",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": {
+      "installerIcon": "dist/assets/Logo.ico",
+      "uninstallerIcon": "dist/assets/Logo.ico",
+      "uninstallDisplayName": "App Face Recognition",
+      "license": "licence.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "asar": false,
+    "directories": {
+      "output": "out/"
+    },
+    "files": [
+      "**/*",
+      "!**/*.ts",
+      "!node_modules/**/*",
+      "!src/**/*",
+      "!*.map",
+      "!package.json",
+      "!package-lock.json"
+    ],
+    "extraResources": [
+      {
+        "from": "dist",
+        "to": "app/dist",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^14.1.0",
+    "@angular/cdk": "^=13.3.9",
+    "@angular/common": "^14.1.0",
+    "@angular/compiler": "^14.1.0",
+    "@angular/core": "^14.1.0",
+    "@angular/forms": "^14.1.0",
+    "@angular/localize": "^14.1.0",
+    "@angular/platform-browser": "^14.1.0",
+    "@angular/platform-browser-dynamic": "^14.1.0",
+    "@angular/router": "^14.1.0",
+    "@coreui/angular": "^2.11.2",
+    "@coreui/coreui": "^2.1.16",
+    "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.3.1",
+    "@coreui/icons": "^2.0.0-rc.0",
+    "@coreui/icons-angular": "1.0.0-alpha.3",
+    "bootstrap": "^4.6.0",
+    "chart.js": "^2.9.4",
+    "core-js": "^3.9.1",
+    "flag-icon-css": "^3.5.0",
+    "font-awesome": "^4.7.0",
+    "ng-terminal": "^5.0.0",
+    "ng2-charts": "^2.4.2",
+    "ngx-bootstrap": "^6.2.0",
+    "ngx-electron": "^2.2.0",
+    "ngx-mqtt": "^9.0.5",
+    "ngx-perfect-scrollbar": "^10.1.0",
+    "node-gyp": "^8.3.0",
+    "rxjs": "^6.3.3",
+    "serialport": "^9.2.4",
+    "simple-line-icons": "^2.5.5",
+    "ts-helpers": "^1.1.2",
+    "tslib": "^2.0.1",
+    "xterm": "^4.14.1",
+    "xterm-addon-fit": "^0.5.0",
+    "yarn": "^1.22.17",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.1.0",
+    "@angular/cli": "^14.1.0",
+    "@angular/compiler-cli": "^14.1.0",
+    "@angular/language-service": "^14.1.0",
+    "@types/file-saver": "~2.0.5",
+    "@types/jasmine": "^3.6.6",
+    "@types/jasminewd2": "^2.0.8",
+    "@types/node": "^14.14.33",
+    "@types/web-bluetooth": "^0.0.14",
+    "codelyzer": "^6.0.0",
+    "electron": "^15.3.0",
+    "electron-builder": "^22.13.1",
+    "electron-rebuild": "^3.2.3",
+    "jasmine-core": ">=3.8",
+    "jasmine-spec-reporter": "~5.0.0",
+    "karma": "~6.3.20",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.0.3",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "^1.5.0",
+    "patch-package": "^6.4.7",
+    "protractor": "~7.0.0",
+    "semantic-release": "^19.0.3",
+    "ts-node": "^8.10.2",
+    "tslint": "~6.1.0",
+    "typescript": "~4.6.4"
+  },
+  "engines": {
+    "node": ">= 10.13",
+    "npm": ">= 6"
+  }
+}

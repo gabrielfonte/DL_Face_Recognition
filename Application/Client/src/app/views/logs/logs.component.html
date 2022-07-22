@@ -1,0 +1,79 @@
+<div class="row cols-3">
+
+<div class="col-md-7">
+<div class="card">
+    <div class="card-header">
+        <strong>Logs</strong>
+        <div class="card-header-actions">
+          <a class="btn btn-sm btn-dark" (click)="downloadLog()" download="log.txt" [href]="download"><i class="fa cil-arrow-thick-bottom"></i> Download</a>
+          <a class="btn btn-sm" (click)="request_refresh()"><i class="fa cil-loop-circular"></i></a>
+        </div>
+    </div>
+    <div #terminalContainer></div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <strong>Configuração da UART</strong>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="dataConfig" (ngSubmit)="onFormSubmit()" class="form-horizontal">
+      <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="select1">Selecione a Porta</label>
+          <div class="col-md-9">
+            <select class="form-control" formControlName="port">
+            <option [ngValue]="null" disabled>Selecionar</option>
+            <option *ngFor="let port of AllPorts; index as i" [ngValue]="port">
+              {{port.port}} {{ port.identifier }}
+            </option>
+            </select>
+          </div>
+        </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="select1">Selecione o Baudrate</label>
+        <div class="col-md-9">
+          <select class="form-control" formControlName="baud">
+            <option [ngValue]="null" disabled>Selecionar</option>
+            <option *ngFor="let baud of AllBauds" [ngValue]="baud">
+              {{ baud.baudrate }}
+            </option>
+          </select>
+        </div>
+      </div>
+  <div class="card-footer">
+    <button href="\" *ngIf="!connected" class="btn btn-block btn-primary"><i class="fa fa-dot-circle-o"></i> Conectar</button>
+    <button href="\" *ngIf="connected" (click)="disconnect()" class="btn btn-block btn-danger"><i class="fa fa-ban"></i> Desconectar</button>
+  </div>
+  </form>
+  </div>
+</div>
+</div>
+
+<div class="col-md-5">
+  <div class="card">
+      <div class="card-header">
+          <strong>Imagem</strong>
+      </div>
+      <img class="card-body" src="http://Camera.local/stream">
+      <div class="card-footer">
+        <button href="\" class="btn btn-block btn-primary" (click)="requestCamera()"><i class="fa fa-dot-circle-o"></i> Request Camera</button>
+      </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <strong>Registrar nova face</strong>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="registerNewFace" (ngSubmit)="onRegisterSubmit()" class="form-horizontal">
+        <div class="form-group row col">
+          <input type="text" placeholder="Nome" required="" class="form-control" formControlName="name">
+        </div>
+    <div class="card-footer">
+      <button href="\" class="btn btn-block btn-primary"><i class="fa fa-dot-circle-o"></i> Registrar</button>
+    </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+</div>
+
